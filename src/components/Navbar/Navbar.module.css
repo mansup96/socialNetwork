@@ -1,0 +1,21 @@
+.nav {
+  grid-area: nav;
+  background-color: #ccc;
+}
+.item a {
+	color: white;
+	text-decoration: none;
+}
+
+.item a.active {
+	color: blue;
+}
+
+.navbar__friends {
+	display: flex;
+	width: 100%;
+}
+.navbar__friends_item img{
+	width: 50px;
+	border-radius: 50%;
+}

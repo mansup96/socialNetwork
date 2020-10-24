@@ -1,0 +1,9 @@
+.chat_container {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+
+}
+
+.chats_list {
+    padding: 10px;
+}
