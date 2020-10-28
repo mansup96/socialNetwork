@@ -8,10 +8,6 @@ export const MyPosts = props => {
     ));
     let newPostElement = React.createRef();
 
-    let onAddPost = () => {
-        props.addPost();
-    };
-
     let onInputChange = () => {
         let text = newPostElement.current.value;
         props.changeInputValue(text);
@@ -25,7 +21,7 @@ export const MyPosts = props => {
                     ref={newPostElement}
                     onChange={onInputChange}
                     value={props.profilePage.curInputText}/>
-                <button onClick={onAddPost}>Добавить пост</button>
+                <button onClick={props.addPost}>Добавить пост</button>
             </div>
             {postsElements}
         </div>

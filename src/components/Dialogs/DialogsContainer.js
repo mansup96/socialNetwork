@@ -1,11 +1,11 @@
 import {
   updateNewMessageBodyCreator,
-  sendMessageCreator
+  sendMessageCreator,
 } from "../../redux/dialogsPageReducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     dialogsPage: state.dialogsPage,
   };
@@ -13,17 +13,14 @@ let mapStateToProps = state => {
 let mapDispatchToProps = (dispatch) => {
   return {
     sendMessage: () => {
-			dispatch(sendMessageCreator());
-		},
+      dispatch(sendMessageCreator());
+    },
     updateNewMessageBody: (body) => {
-			dispatch(updateNewMessageBodyCreator(body));
-		}
+      dispatch(updateNewMessageBodyCreator(body));
+    },
   };
 };
 
-const DialogsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import classes from "./Users.module.css";
 import userPhoto from "../../assets/img/avatar.png";
 
-let Users = (props) => {
+let Users = props => {
   let pagesCount = Math.ceil(
     props.pageData.totalUsersCount / props.pageData.pageSize
   );
@@ -20,10 +20,18 @@ let Users = (props) => {
     props.pageData.currentPage !== pagesCount ? pagesCount : null,
   ];
 
+  const follow = id => {
+    props.followUser(id);
+  };
+
+  const unfollow = id => {
+    props.unfollowUser(id);
+  };
+
   return (
     <div className={classes.users__container}>
       <div className={classes.paginationWrapper}>
-        {pages.map((page) => {
+        {pages.map(page => {
           return (
             <span
               className={
@@ -38,7 +46,7 @@ let Users = (props) => {
           );
         })}
       </div>
-      {props.pageData.users.map((user) => (
+      {props.pageData.users.map(user => (
         <div key={user.id} className={classes.users__item}>
           <div className={classes.users__avatar}>
             <NavLink to={`/profile/${user.id}`}>
@@ -49,11 +57,19 @@ let Users = (props) => {
               />
             </NavLink>
             {user.followed ? (
-              <button onClick={() => props.onUnfollow(user.id)}>
+              <button
+                disabled={props.pageData.followingIDs.some(u => u === user.id)}
+                onClick={() => unfollow(user.id)}
+              >
                 Unfollow
               </button>
             ) : (
-              <button onClick={() => props.onFollow(user.id)}>Follow</button>
+              <button
+                disabled={props.pageData.followingIDs.some(u => u === user.id)}
+                onClick={() => follow(user.id)}
+              >
+                Follow
+              </button>
             )}
           </div>
           <div className={classes.users__content}>
