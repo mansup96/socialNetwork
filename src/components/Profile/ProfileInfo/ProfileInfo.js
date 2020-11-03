@@ -1,20 +1,17 @@
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import classes from "./ProfileInfo.module.css";
+import ProfileStatus from "./ProfileStatus";
 
-export const ProfileInfo = (props) => {
+export const ProfileInfo = props => {
   if (!props.profile) {
     return <Preloader />;
   }
   return (
     <div className="main-wrapper">
-      <img
-        className={classes.topImg}
-        src={"https://openimagedenoise.github.io/images/moana_16spp_oidn.jpg"}
-        alt=""
-      />
       <img src={props.profile.photos.large} alt="" />
-			<span> Полное имя: {props.profile.fullName}</span>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+      <span> Полное имя: {props.profile.fullName}</span>
       <div className={classes.profile}>
         <img
           className={classes.profile__photo}

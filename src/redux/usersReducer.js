@@ -114,10 +114,6 @@ export const followUser = userID => dispatch => {
       }
       dispatch(toggleIsFollowingInProgress(userID, false));
     })
-    .catch(err => {
-      console.log(err);
-      dispatch(toggleIsFollowingInProgress(userID, false));
-    });
 };
 
 export const unfollowUser = userID => dispatch => {
@@ -130,10 +126,6 @@ export const unfollowUser = userID => dispatch => {
       }
       dispatch(toggleIsFollowingInProgress(userID, false));
     })
-    .catch(err => {
-      console.log(err);
-      dispatch(toggleIsFollowingInProgress(userID, false));
-    });
 };
 
 export default usersReducer;

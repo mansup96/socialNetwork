@@ -22,6 +22,11 @@ export const Navbar = props => {
           </NavLink>
         </li>
         <li className={classes.item}>
+          <NavLink activeClassName={classes.active} to="/login">
+            Login
+          </NavLink>
+        </li>
+        <li className={classes.item}>
           <a>News</a>
         </li>
         <li className={classes.item}>
