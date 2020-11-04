@@ -1,52 +1,42 @@
-import React from "react";
-import classes from "./ProfileInfo.module.css";
+import React, { useState, useEffect } from 'react';
 
-class ProfileStatus extends React.Component {
-  state = { editMode: false, status: this.props.status || "" };
+export default function ProfileStatus(props) {
+	const [editMode, setEditMode] = useState(false);
+	const [status, setStatus] = useState(props.status);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status,
-      });
-    }
-  }
+	useEffect(() => {
+		setStatus(props.status);
+	}, [props.status]);
 
-  activateEditMode = () => {
-    this.setState({
-      editMode: true,
-    });
-  };
+	const handleStatusChange = e => {
+		setStatus(e.target.value);
+	};
 
-  deactivateEditMode = () => {
-    this.setState({
-      editMode: false,
-    });
-    this.props.updateStatus(this.state.status);
-  };
+	const activateEditMode = () => {
+		setEditMode(true);
+	};
 
-  changeStatus = e => {
-    this.setState({ status: e.currentTarget.value });
-  };
+	const deactivateEditMode = () => {
+		setEditMode(false);
+		props.updateStatus(status);
+	};
 
-  render() {
-    return (
-      <div>
-        {(this.state.editMode || !this.props.status) && (
-          <input
-            type="text"
-            onChange={this.changeStatus}
-            value={this.state.status}
-            onBlur={this.deactivateEditMode}
-            autoFocus={true}
-          />
-        )}
-        {!this.state.editMode && (
-          <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
-        )}
-      </div>
-    );
-  }
+	return (
+		<div>
+			{editMode && (
+				<input
+					type="text"
+					onChange={handleStatusChange}
+					value={status}
+					onBlur={deactivateEditMode}
+					autoFocus={true}
+				/>
+			)}
+			{!editMode && (
+				<span onClick={activateEditMode}>
+					{status || 'Введите статус'}
+				</span>
+			)}
+		</div>
+	);
 }
-
-export default ProfileStatus;
