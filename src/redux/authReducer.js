@@ -1,4 +1,3 @@
-import { act } from 'react-dom/test-utils';
 import { authAPI } from '../api/api';
 
 const SET_CLIENT_DATA = 'SET_CLIENT_DATA',
@@ -66,7 +65,7 @@ export const login = formData => dispatch => {
 			const error = {};
 			if (data.fieldsErrors.length > 0) {
 				data.fieldsErrors.forEach(err => {
-					error[err.field] = error[err.error];
+					error[err.field] = err.error;
 				});
 			} else {
 				error.common = data.messages[0];
